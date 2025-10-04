@@ -28,6 +28,6 @@ jobs:
 
             - name: Build and Push
               run: |
-                podman login -u "${{ github.actor }}" -p "${{ env.GHCR_TOKEN }}" ghcr.io
+                podman login -u "${{ github.actor }}" -p "${{ secrets.GITHUB_TOKEN }}" ghcr.io
                 podman build -t ghcr.io/immutablearch/buildc:latest -f Containerfile .
                 podman push ghcr.io/immutablearch/buildc:latest
