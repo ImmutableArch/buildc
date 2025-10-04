@@ -1,0 +1,33 @@
+name: Build Buildc
+on:
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: "05 10 * * *"
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "**/README.md"
+  workflow_dispatch:
+
+jobs:
+    build:
+        name: Build and Push
+        runs-on: ubuntu-24.04
+
+        permissions:
+            contents: read
+            packages: write
+            id-token: write
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Build and Push
+              run: |
+                podman login -u "${{ github.actor }}" -p "${{ env.GHCR_TOKEN }}" ghcr.io
+                podman build -t ghcr.io/immutablearch/buildc:latest -f Containerfile .
+                podman push ghcr.io/immutablearch/buildc:latest
