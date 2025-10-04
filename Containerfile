@@ -4,7 +4,7 @@ RUN echo -e "[immutablearch]\nSigLevel = Optional TrustAll\nServer = https://imm
 
 RUN pacman -Sy --noconfirm \
     podman \
-    skoepo \
+    skopeo \
     git \
     cosign \
     buildah \
