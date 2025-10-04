@@ -18,6 +18,6 @@ RUN pacman -Sy --noconfirm \
 
 RUN git clone https://github.com/ImmutableArch/pacman-ostree.git && \
     cd pacman-ostree && \
-    cargo build --release 
+    cargo build --release && \
+    cp -v target/release/pacman-ostree /bin
 
-RUN 
