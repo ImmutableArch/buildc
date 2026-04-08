@@ -13,7 +13,8 @@ RUN pacman -Sy --noconfirm \
     dracut \
     arch-install-scripts \
     zstd \
-    rust
+    rust \
+    bubblewrap
 
 RUN git clone https://github.com/ImmutableArch/pacman-ostree.git && \
     cd pacman-ostree && \
