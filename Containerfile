@@ -1,7 +1,5 @@
 FROM archlinux:latest
 
-RUN echo -e "[immutablearch]\nSigLevel = Optional TrustAll\nServer = https://immutablearch.github.io/packages/aur-repo/" \ >> /etc/pacman.conf
-
 RUN pacman -Sy --noconfirm \
     podman \
     sudo \
@@ -16,5 +14,8 @@ RUN pacman -Sy --noconfirm \
     arch-install-scripts \
     zstd \
     rust \
-    pacman-ostree
 
+git clone https://github.com/ImmutableArch/pacman-ostree.git
+cd pacman-ostree
+cargo build
+sudo cp target/debug/pacman-ostree /bin
