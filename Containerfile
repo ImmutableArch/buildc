@@ -13,9 +13,9 @@ RUN pacman -Sy --noconfirm \
     dracut \
     arch-install-scripts \
     zstd \
-    rust \
+    rust
 
-git clone https://github.com/ImmutableArch/pacman-ostree.git
-cd pacman-ostree
-cargo build
-sudo cp target/debug/pacman-ostree /bin
+RUN git clone https://github.com/ImmutableArch/pacman-ostree.git && \
+    cd pacman-ostree && \
+    cargo build && \
+    cp target/debug/pacman-ostree /usr/bin/pacman-ostree
